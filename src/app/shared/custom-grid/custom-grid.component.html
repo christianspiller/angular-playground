@@ -1,0 +1,10 @@
+<div class="custom-grid-container"     (scroll)="onScroll($event)">
+  <div
+    (scroll)="onScroll($event)"
+    class="custom-grid"
+    [style.width]="gridWidth * colWidth + 'px'"
+    [style.height]="gridHeight * rowHeight + 'px'"
+  >
+    <div *ngFor="let row of visibleRows"></div>
+  </div>
+</div>

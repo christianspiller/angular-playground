@@ -1,0 +1,11 @@
+<div class="grid-page">
+  <div class="grid-header">
+    <span>THE HEADER</span>
+  </div>
+  <div class="grid-row" #resizeAndScroll (scroll)="onScroll($event)">
+    <app-custom-grid class="grid-content" [colWidth]="colWidth"></app-custom-grid>
+  </div>
+  <div class="grid-footer">
+    <span>THE FOOTER</span>
+  </div>
+</div>

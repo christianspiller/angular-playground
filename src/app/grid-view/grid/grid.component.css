@@ -1,0 +1,25 @@
+.grid-page {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.grid-page .grid-header {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.grid-page .grid-row {
+  flex: 1 1 auto;
+  overflow: scroll;
+}
+
+.grid-page .grid-footer {
+  flex: 0 1 40px;
+}
+
+.grid-content {
+  height: 100%;
+  display: inline-block;
+}

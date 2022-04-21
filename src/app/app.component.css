@@ -1,0 +1,11 @@
+.visual-composer {
+  height: 100%;
+}
+
+.visual-composer .title {
+  height: 55px;
+}
+
+.visual-composer .content {
+  height: calc(100% - 55px);
+}
