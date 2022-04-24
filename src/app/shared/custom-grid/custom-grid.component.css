@@ -7,4 +7,12 @@
 
 .custom-grid {
   background: yellow;
+  animation: ease;
+}
+
+.grid-cell {
+  border: solid 1px gray;
+  height: 30px;
+  background: bisque;
+  position: relative;
 }
