@@ -3,33 +3,32 @@
     class="custom-grid"
     [style.width]="viewPortWidth * phase + 'px'"
     [style.height]="2 * gridHeight + 'px'">
-    <div *ngFor="let row of visibleRows; let rowId = index" class="grid-row"
+    <div class="grid-row grid-row-header"
          [style.height]="rowHeight + 'px'"
-          [style.z-index]="rowId == 0? 10:0"
-         [style.background]="rowId == 0? 'red':''">
+          [style.z-index]="10-(group.level)"
+         [style.top]="(group.level-1) * rowHeight + 'px'"
+         [style.background]="group?.color"
+          [id]="group?.name + '-group'">
       <div class="grid-cell" *ngFor="let row of visibleCols; let i = index"
            [style.height]="rowHeight + 'px'"
            [style.top]="i * -rowHeight + 'px'"
            [style.width]="100 / numCols + '%'"
-           [style.left]="i * 100 / numCols + '%'">{{i}}</div>
+           [style.left]="i * 100 / numCols + '%'">{{i}}<br>{{group?.name}}</div>
     </div>
-    <div class="custom-grid-container">
-      <div *ngFor="let phase of phases"
-           class="custom-grid"
-           [style.width]="viewPortWidth * phase + 'px'"
-           [style.height]="gridHeight + 'px'">
-        <div *ngFor="let row of visibleRows; let rowId = index" class="grid-row"
-             [style.height]="rowHeight + 'px'"
-        [style.top]="rowHeight + 'px'"
-         [style.z-index]="rowId == 0? 5:0"
-        [style.background]="rowId == 0? 'orange':''">
-          <div class="grid-cell" *ngFor="let row of visibleCols; let i = index"
-               [style.height]="rowHeight + 'px'"
-               [style.top]="i * -rowHeight + 'px'"
-               [style.width]="100 / numCols + '%'"
-               [style.left]="i * 100 / numCols + '%'">{{i}}</div>
-        </div>
-      </div>
+
+    <div *ngFor="let track of group?.tracks" class="grid-row"
+         [style.height]="rowHeight + 'px'"
+         [id]="track.name">
+      <div class="grid-cell" *ngFor="let row of visibleCols; let i = index"
+           [style.height]="rowHeight + 'px'"
+           [style.top]="i * -rowHeight + 'px'"
+           [style.width]="100 / numCols + '%'"
+           [style.left]="i * 100 / numCols + '%'">{{i}}<br>{{track.name}}</div>
     </div>
+
+    <app-custom-grid [phases]="phases" [viewPort]="viewPort"
+                     [id]="group?.name"
+                     *ngFor="let group of group?.groups"
+                     [group]="group"></app-custom-grid>
   </div>
 </div>

@@ -7,7 +7,6 @@ import {GridDataModel} from "../../shared/custom-grid/model/grid-data.model";
   styleUrls: ['./grid.component.css']
 })
 export class GridComponent implements AfterViewInit {
-  public zoomX: number = 1;
   public viewPort: {left: number, top: number, width: number, height: number} = {left: 0, top: 0, width: 0, height: 0};
 
   @ViewChild('resizeAndScroll')
@@ -18,9 +17,48 @@ export class GridComponent implements AfterViewInit {
     groups: [
       {
         name: "App 1",
-        groups: [],
-        tracks: [{name: "x"}, {name: "y"}, {name: "z"}]
-      }
+        color: 'red',
+        level: 1,
+        groups: [
+          {
+            name: "UDP 1",
+            color: 'orange',
+            level: 2,
+            groups: [],
+            tracks: [{name: "udp1"}, {name: "udp2"}, {name: "udp3"}]
+          },
+          {
+            name: "TCP 1",
+            color: 'brown',
+            level: 2,
+            groups: [],
+            tracks: [{name: "tcp1"}, {name: "tcp2"}, {name: "tcp3"}, {name: "tcp4"}]
+          },
+        ],
+        tracks: [{name: "ax"}, {name: "ay"}, {name: "az"}]
+      },
+      {
+        name: "App 2",
+        color: 'blue',
+        level: 1,
+        groups: [
+          {
+            name: "UDP 2",
+            color: 'violet',
+            level: 2,
+            groups: [],
+            tracks: [{name: "udp4"}, {name: "udp5"}, {name: "udp6"}]
+          },
+          {
+            name: "TCP 2",
+            color: 'pink',
+            level: 2,
+            groups: [],
+            tracks: [{name: "tcp5"}, {name: "tcp6"}, {name: "tcp7"}, {name: "tcp8"}]
+          },
+        ],
+        tracks: []
+      },
     ]
   };
 

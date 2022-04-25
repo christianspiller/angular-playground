@@ -5,6 +5,12 @@ export interface GridDataModel {
 
 export interface GroupModel {
   name: string;
+  color: string;
+  level: number;
   groups: GroupModel[];
-  tracks: any[];
+  tracks: TrackModel[];
+}
+
+export interface TrackModel {
+  name: string;
 }

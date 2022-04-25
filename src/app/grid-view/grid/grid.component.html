@@ -7,8 +7,10 @@
     </span>
   </div>
   <div class="view-row" #resizeAndScroll (scroll)="onScroll()">
-    <app-custom-grid class="view-content" [phases]="gridData.phases" [viewPort]="viewPort" [numRows]="2"></app-custom-grid>
-    <app-custom-grid class="view-content" [phases]="gridData.phases" [viewPort]="viewPort" [numRows]="4"></app-custom-grid>
+    <app-custom-grid class="view-content" [phases]="gridData.phases" [viewPort]="viewPort"
+                     id="testCase"
+                     *ngFor="let group of gridData.groups"
+                     [group]="group"></app-custom-grid>
   </div>
   <div class="view-footer">
     <span>THE FOOTER</span>
