@@ -7,7 +7,7 @@
 
 .custom-grid {
   background: yellow;
-  animation: ease;
+  transition: width 0.2s ease-in-out;;
 }
 
 .grid-cell {
