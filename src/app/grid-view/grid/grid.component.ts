@@ -13,7 +13,7 @@ export class GridComponent implements AfterViewInit {
   private el: ElementRef | undefined;
 
   public gridData: GridDataModel = {
-    phases: [1, 5, 1],
+    phases: [0.25, 0.5, 0.25],
     groups: [
       {
         name: "App 1",
@@ -65,25 +65,21 @@ export class GridComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit(): void {
-
-    console.log(this.el);
     this.setViewPort();
   }
 
   onScroll() {
-    console.log("Scroll!");
     this.setViewPort();
   }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    console.log("Resize!");
     this.setViewPort();
   };
 
   setViewPort() {
     let elem = this.el?.nativeElement;
-    console.log('x: ' + elem.scrollLeft + ', y: ' + elem.scrollTop + ', w: ' + elem.offsetWidth + ', h: ' + elem.offsetHeight);
+    // console.log('x: ' + elem.scrollLeft + ', y: ' + elem.scrollTop + ', w: ' + elem.offsetWidth + ', h: ' + elem.offsetHeight);
     this.viewPort = {left: elem.scrollLeft, top: elem.scrollTop, width: elem.offsetWidth, height: elem.offsetHeight}
   }
 

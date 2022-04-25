@@ -10,7 +10,7 @@ export class CustomGridComponent implements OnInit{
   get phases(): number[] {
     return this._phases;
   }
-  public numCols = 10;
+  public numCols = 4;
   @Input()
   public group: GroupModel = {name: 'none', color: 'black', level: 0, groups: [], tracks: []} ;
   public rowHeight = 50;
@@ -47,7 +47,6 @@ export class CustomGridComponent implements OnInit{
   }
 
   resize(): void {
-    console.log("Viewport", this._viewPort);
     this.gridHeight = this.getRows(this.group) * this.rowHeight;
   }
 

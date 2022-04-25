@@ -14,7 +14,7 @@
   align-items: flex-start;
 }
 
-.grid-row.grid-row-header {
+.grid-row.grid-row-group {
   position: sticky;
 }
 

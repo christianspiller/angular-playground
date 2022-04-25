@@ -1,9 +1,9 @@
 <div class="custom-grid-container">
-  <div *ngFor="let phase of phases"
+  <div *ngFor="let phase of phases; let phaseId = index"
     class="custom-grid"
     [style.width]="viewPortWidth * phase + 'px'"
     [style.height]="2 * gridHeight + 'px'">
-    <div class="grid-row grid-row-header"
+    <div class="grid-row grid-row-group"
          [style.height]="rowHeight + 'px'"
           [style.z-index]="10-(group.level)"
          [style.top]="(group.level-1) * rowHeight + 'px'"
@@ -13,7 +13,7 @@
            [style.height]="rowHeight + 'px'"
            [style.top]="i * -rowHeight + 'px'"
            [style.width]="100 / numCols + '%'"
-           [style.left]="i * 100 / numCols + '%'">{{i}}<br>{{group?.name}}</div>
+           [style.left]="i * 100 / numCols + '%'">{{i}}<br>{{group?.name}} [{{phaseId}}]</div>
     </div>
 
     <div *ngFor="let track of group?.tracks" class="grid-row"
