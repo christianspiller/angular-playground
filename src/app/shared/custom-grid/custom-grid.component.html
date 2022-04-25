@@ -2,13 +2,34 @@
   <div *ngFor="let phase of phases"
     class="custom-grid"
     [style.width]="viewPortWidth * phase + 'px'"
-    [style.height]="gridHeight + 'px'">
-    <div class="grid-row" [style.height]="rowHeight + 'px'">
-      <div class="grid-cell" *ngFor="let row of visibleRows; let i = index"
+    [style.height]="2 * gridHeight + 'px'">
+    <div *ngFor="let row of visibleRows; let rowId = index" class="grid-row"
+         [style.height]="rowHeight + 'px'"
+          [style.z-index]="rowId == 0? 10:0"
+         [style.background]="rowId == 0? 'red':''">
+      <div class="grid-cell" *ngFor="let row of visibleCols; let i = index"
            [style.height]="rowHeight + 'px'"
            [style.top]="i * -rowHeight + 'px'"
            [style.width]="100 / numCols + '%'"
            [style.left]="i * 100 / numCols + '%'">{{i}}</div>
+    </div>
+    <div class="custom-grid-container">
+      <div *ngFor="let phase of phases"
+           class="custom-grid"
+           [style.width]="viewPortWidth * phase + 'px'"
+           [style.height]="gridHeight + 'px'">
+        <div *ngFor="let row of visibleRows; let rowId = index" class="grid-row"
+             [style.height]="rowHeight + 'px'"
+        [style.top]="rowHeight + 'px'"
+         [style.z-index]="rowId == 0? 5:0"
+        [style.background]="rowId == 0? 'orange':''">
+          <div class="grid-cell" *ngFor="let row of visibleCols; let i = index"
+               [style.height]="rowHeight + 'px'"
+               [style.top]="i * -rowHeight + 'px'"
+               [style.width]="100 / numCols + '%'"
+               [style.left]="i * 100 / numCols + '%'">{{i}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

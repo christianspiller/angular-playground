@@ -6,6 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./custom-grid.component.css'],
 })
 export class CustomGridComponent implements OnInit{
+  public visibleRows: any[] = [];
   get phases(): number[] {
     return this._phases;
   }
@@ -16,7 +17,7 @@ export class CustomGridComponent implements OnInit{
 
   public gridWidth = 0;
   public gridHeight = 0;
-  public visibleRows: Array<any> | undefined;
+  public visibleCols: Array<any> | undefined;
 
   private _phases: number[] = [];
 
@@ -36,10 +37,10 @@ export class CustomGridComponent implements OnInit{
     return this._viewPort.width;
   }
 
-
   ngOnInit(): void {
     console.log("Init! " + this.numCols + ' x ' + this.numRows);
-    this.visibleRows = new Array(this.numCols);
+    this.visibleCols = new Array(this.numCols);
+    this.visibleRows = new Array(this.numRows);
     this.resize();
   }
 

@@ -13,11 +13,19 @@
   flex-flow: column;
   align-items: flex-start;
 }
+
+.grid-row:first-child {
+  position: sticky;
+}
+
 .grid-row {
   overflow: hidden;
-  position: sticky;
   width: 100%;
   top: 0;
+}
+
+.grid-row.sticky {
+  position: sticky;
 }
 
 .grid-cell {
@@ -25,7 +33,6 @@
   /* border lets the div grow and you need calculations for the relative positions. With outline you don't. */
   outline: 1px solid gray;
   outline-offset: -1px;
-  background: bisque;
+  background: transparent;
   position: relative;
 }
-
