@@ -4,10 +4,8 @@
 
 .visual-composer .title {
   height: 55px;
-  border: solid 2px green;
 }
 
 .visual-composer .content {
   height: calc(100% - 55px);
-  border: solid 2px blue;
 }

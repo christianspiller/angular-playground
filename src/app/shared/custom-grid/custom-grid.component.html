@@ -4,9 +4,11 @@
     [style.width]="gridWidth + 'px'"
     [style.height]="gridHeight + 'px'"
   >
-    <div class="grid-cell" *ngFor="let row of visibleRows; let i = index"
-         [style.top]="i * -32 + 'px'"
-         [style.width]="100 / numCols + '%'"
-         [style.left]="i * 100 / numCols + '%'">{{i}}</div>
+    <div class="grid-row">
+      <div class="grid-cell" *ngFor="let row of visibleRows; let i = index"
+           [style.top]="i * -30 + 'px'"
+           [style.width]="100 / numCols + '%'"
+           [style.left]="i * 100 / numCols + '%'">{{i}}</div>
+    </div>
   </div>
 </div>
