@@ -2,14 +2,23 @@
   background-color: darkgray;
 /*  width: 100%; */
   height: 100%;
-  display: inline-block;
+  display: flex;
   white-space: nowrap;
 }
 
 .custom-grid {
   background: yellow;
   transition: width 0.2s ease-in-out;
-  display: inline-block;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+.grid-row {
+  overflow: hidden;
+  height: 30px;
+  position: sticky;
+  width: 100%;
+  top: 0;
 }
 
 .grid-cell {
@@ -22,7 +31,3 @@
   position: relative;
 }
 
-.grid-row {
-  overflow: hidden;
-  height: 30px;
-}

@@ -1,25 +1,25 @@
-.grid-page {
+.grid-view {
   display: flex;
   flex-flow: column;
   height: 100%;
 }
 
-.grid-page .grid-header {
+.grid-view .view-header {
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: auto;
 }
 
-.grid-page .grid-row {
+.grid-view .view-row {
   flex: 1 1 auto;
   overflow: scroll;
 }
 
-.grid-page .grid-footer {
+.grid-view .view-footer {
   flex: 0 1 40px;
 }
 
-.grid-content {
+.grid-view .view-content {
   /*height: 100%;*/
   display: inline-block;
 }

@@ -1,14 +1,14 @@
-<div class="grid-page">
-  <div class="grid-header">
+<div class="grid-view">
+  <div class="view-header">
     <span>THE HEADER</span>
     <span style="cursor: pointer" (click)="increaseZoom()">( + )</span>
     <span style="cursor: pointer" (click)="decreaseZoom()">( - )</span>
   </div>
-  <div class="grid-row" #resizeAndScroll (scroll)="onScroll()">
-    <app-custom-grid class="grid-content" [zoomX]="zoomX" [viewPort]="viewPort"></app-custom-grid>
-    <app-custom-grid class="grid-content" [zoomX]="zoomX" [viewPort]="viewPort"></app-custom-grid>
+  <div class="view-row" #resizeAndScroll (scroll)="onScroll()">
+    <app-custom-grid class="view-content" [zoomX]="zoomX" [viewPort]="viewPort"></app-custom-grid>
+    <app-custom-grid class="view-content" [zoomX]="zoomX" [viewPort]="viewPort"></app-custom-grid>
   </div>
-  <div class="grid-footer">
+  <div class="view-footer">
     <span>THE FOOTER</span>
   </div>
 </div>
