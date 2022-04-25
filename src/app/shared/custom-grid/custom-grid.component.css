@@ -3,11 +3,13 @@
 /*  width: 100%; */
   height: 100%;
   display: inline-block;
+  white-space: nowrap;
 }
 
 .custom-grid {
   background: yellow;
-  transition: width 0.2s ease-in-out;;
+  transition: width 0.2s ease-in-out;
+  display: inline-block;
 }
 
 .grid-cell {
