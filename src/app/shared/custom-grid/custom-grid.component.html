@@ -1,25 +1,12 @@
 <div class="custom-grid-container">
-  <div
+  <div *ngFor="let phase of phases"
     class="custom-grid"
-    [style.width]="gridWidth + 'px'"
-    [style.height]="gridHeight + 'px'"
-  >
-    <div class="grid-row">
+    [style.width]="viewPortWidth * phase + 'px'"
+    [style.height]="gridHeight + 'px'">
+    <div class="grid-row" [style.height]="rowHeight + 'px'">
       <div class="grid-cell" *ngFor="let row of visibleRows; let i = index"
-           [style.top]="i * -30 + 'px'"
-           [style.width]="100 / numCols + '%'"
-           [style.left]="i * 100 / numCols + '%'">{{i}}</div>
-    </div>
-  </div>
-
-  <div
-    class="custom-grid"
-    [style.width]="gridWidth + 'px'"
-    [style.height]="gridHeight + 'px'"
-  >
-    <div class="grid-row">
-      <div class="grid-cell" *ngFor="let row of visibleRows; let i = index"
-           [style.top]="i * -30 + 'px'"
+           [style.height]="rowHeight + 'px'"
+           [style.top]="i * -rowHeight + 'px'"
            [style.width]="100 / numCols + '%'"
            [style.left]="i * 100 / numCols + '%'">{{i}}</div>
     </div>

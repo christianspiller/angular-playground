@@ -6,20 +6,24 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./custom-grid.component.css'],
 })
 export class CustomGridComponent implements OnInit{
-  public numCols = 100;
+  get phases(): number[] {
+    return this._phases;
+  }
+  public numCols = 60;
+  @Input()
   public numRows = 4;
   public rowHeight = 50;
-  private _colWidth = 50;
 
-  public gridWidth = this.numCols * this._colWidth;
-  public gridHeight = this.numRows * this.rowHeight;
+  public gridWidth = 0;
+  public gridHeight = 0;
   public visibleRows: Array<any> | undefined;
 
-  private _zoomX = 1;
+  private _phases: number[] = [];
+
   private _viewPort: {left: number, top: number, width: number, height: number} = {left: 0, top: 0, width: 0, height: 0};
 
-  @Input() set zoomX(value: number) {
-    this._zoomX = value;
+  @Input() set phases(value: number[]) {
+    this._phases = value;
     this.resize();
   }
 
@@ -28,16 +32,20 @@ export class CustomGridComponent implements OnInit{
     this.resize();
   }
 
+  get viewPortWidth() {
+    return this._viewPort.width;
+  }
+
 
   ngOnInit(): void {
-    console.log("Init!");
+    console.log("Init! " + this.numCols + ' x ' + this.numRows);
     this.visibleRows = new Array(this.numCols);
     this.resize();
   }
 
   resize(): void {
     console.log("Viewport", this._viewPort);
-    this.gridWidth = this._viewPort.width * this._zoomX;
+    this.gridHeight = this.numRows * this.rowHeight;
   }
 
 }

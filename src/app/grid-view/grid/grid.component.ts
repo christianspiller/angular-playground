@@ -1,4 +1,5 @@
 import {Component, ElementRef, HostListener, AfterViewInit, ViewChild} from '@angular/core';
+import {GridDataModel} from "../../shared/custom-grid/model/grid-data.model";
 
 @Component({
   selector: 'app-grid',
@@ -12,9 +13,21 @@ export class GridComponent implements AfterViewInit {
   @ViewChild('resizeAndScroll')
   private el: ElementRef | undefined;
 
+  public gridData: GridDataModel = {
+    phases: [1, 5, 1],
+    groups: [
+      {
+        name: "App 1",
+        groups: [],
+        tracks: [{name: "x"}, {name: "y"}, {name: "z"}]
+      }
+    ]
+  };
+
   constructor() { }
 
   ngAfterViewInit(): void {
+
     console.log(this.el);
     this.setViewPort();
   }
@@ -37,11 +50,11 @@ export class GridComponent implements AfterViewInit {
   }
 
 
-  increaseZoom() {
-    this.zoomX *=1.2;
+  increaseZoom(phaseId: number) {
+    this.gridData.phases[phaseId] *=1.2;
   }
 
-  decreaseZoom() {
-    this.zoomX *=0.8;
+  decreaseZoom(phaseId: number) {
+    this.gridData.phases[phaseId] *=0.8;
   }
 }

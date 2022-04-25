@@ -15,7 +15,6 @@
 }
 .grid-row {
   overflow: hidden;
-  height: 30px;
   position: sticky;
   width: 100%;
   top: 0;
@@ -26,7 +25,6 @@
   /* border lets the div grow and you need calculations for the relative positions. With outline you don't. */
   outline: 1px solid gray;
   outline-offset: -1px;
-  height: 30px;
   background: bisque;
   position: relative;
 }
