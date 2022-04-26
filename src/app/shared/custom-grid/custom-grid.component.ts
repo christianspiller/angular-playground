@@ -10,6 +10,8 @@ export class CustomGridComponent implements OnInit{
   get phases(): number[] {
     return this._phases;
   }
+  @Input()
+  public zoomX = 1;
   public numCols = 4;
   @Input()
   public group: GroupModel = {name: 'none', color: 'black', level: 0, groups: [], tracks: []} ;
@@ -57,6 +59,7 @@ export class CustomGridComponent implements OnInit{
       numRows += this.getRows(subGroup);
     }
     numRows += group.tracks.length;
+    console.log(numRows + " rows for " + group.name);
     return numRows;
   }
 

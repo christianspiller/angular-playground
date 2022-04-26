@@ -13,6 +13,9 @@
 .grid-view .view-row {
   flex: 1 1 auto;
   overflow: scroll;
+
+  display: flex;
+  flex-flow: row;
 }
 
 .grid-view .view-footer {
@@ -22,4 +25,40 @@
 .grid-view .view-content {
   /*height: 100%;*/
   display: inline-block;
+}
+
+
+/* TEMP */
+.grid-phase {
+  height: 500px;
+  flex: 1 0 600px;
+}
+
+.grid-row {
+  height: 25px;
+  outline: 1px solid gray;
+  outline-offset: -1px;
+}
+
+.sticky-1 {
+  background: red;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sticky-2 {
+  background: orange;
+  position: sticky;
+  top: 25px;
+  z-index: 9;
+}
+
+.grid-cell {
+  position: absolute;
+  width: 40px;
+  height: 25px;
+
+  outline: 1px solid gray;
+  outline-offset: -1px;
 }

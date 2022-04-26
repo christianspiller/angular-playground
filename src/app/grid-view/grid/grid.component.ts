@@ -13,7 +13,7 @@ export class GridComponent implements AfterViewInit {
   private el: ElementRef | undefined;
 
   public gridData: GridDataModel = {
-    phases: [0.25, 0.5, 0.25],
+    phases: [0.25],
     groups: [
       {
         name: "App 1",
