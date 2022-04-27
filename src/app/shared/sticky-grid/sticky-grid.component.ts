@@ -17,11 +17,32 @@ export class StickyGridComponent implements OnInit {
   @Input()
   public rowHeight: number = 25;
 
+  private _numRows: number = 1;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.calculateGridHeight();
   }
 
+  get numRows() {
+    return this._numRows;
+  }
+
+  private calculateGridHeight() {
+    let numRows = 0;
+    for(let group of this.groups) {
+      numRows += this.countRows(group);
+    }
+    this._numRows = numRows;
+  }
+
+  private countRows(group: StickyGridGroup) : number {
+    let numRows: number = group.rows.length + 1;
+    for(let subGroup of group.subGroups) {
+      numRows += this.countRows(subGroup);
+    }
+    return numRows;
+  }
 
 }

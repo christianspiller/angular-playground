@@ -7,7 +7,6 @@
 }
 
 .grid-phase {
-  height: 500px;
   flex: 1 0 600px;
   background: lightgray;
 }

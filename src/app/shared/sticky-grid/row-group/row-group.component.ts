@@ -16,5 +16,4 @@ export class RowGroupComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
