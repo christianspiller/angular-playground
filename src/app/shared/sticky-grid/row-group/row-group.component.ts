@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StickyGridGroup} from "../model/sticky-grid-group";
+import {StickyGridPhase} from "../model/sticky-grid-phase";
 
 @Component({
   selector: 'app-row-group',
@@ -14,10 +15,25 @@ export class RowGroupComponent implements OnInit {
 
   @Input()
   public scale: string[] = [];
+  @Input()
+  public phase: StickyGridPhase = {name: "", start: 0, stop: 0, zoomX: 0}
 
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  filter(phase: StickyGridPhase, data?: { start: number; stop: number }[]): { start: number; stop: number }[] {
+    if(!data) return [];
+
+    let filtered: { start: number; stop: number }[] = [];
+
+    for(let item of data) {
+      if(item.start < phase.stop && item.stop >= phase.start) {
+        filtered.push(item);
+      }
+    }
+    return filtered;
   }
 }

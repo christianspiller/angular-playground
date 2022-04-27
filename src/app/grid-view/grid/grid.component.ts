@@ -30,14 +30,14 @@ export class GridComponent implements AfterViewInit {
             color: 'orange',
             level: 2,
             subGroups: [],
-            rows: [{name: "udp1", data: [{start: 1, stop: 5}]}, {name: "udp2"}, {name: "udp3"}]
+            rows: [{name: "udp1", data: [{start: 1, stop: 5}, {start: 50, stop: 80}]}, {name: "udp2"}, {name: "udp3"}]
           },
           {
             name: "TCP 1",
             color: 'brown',
             level: 2,
             subGroups: [],
-            rows: [{name: "tcp1"}, {name: "tcp2"}, {name: "tcp3"}, {name: "tcp4"}]
+            rows: [{name: "tcp1"}, {name: "tcp2", data: [{start: 60, stop: 80}]}, {name: "tcp3"}, {name: "tcp4"}]
           },
         ],
         rows: [{name: "ax"}, {name: "ay"}, {name: "az"}]

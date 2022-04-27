@@ -12,6 +12,10 @@
         [style.left]="(cellIndex * 100) / scale.length + '%'"
     [style.width]="100 / scale.length + '%'">
     </div>
+    <div *ngFor="let data of filter(phase, row.data)"
+      style="position: absolute; height: 19px; background: blue; margin-top: 3px"
+    [style.left]="(data.start-phase.start) * 100 / (phase.stop - phase.start) + '%'"
+    [style.width]="(data.stop - data.start)  * 100/ (phase.stop - phase.start) + '%' "></div>
   </div>
 </div>
 
@@ -19,4 +23,5 @@
   *ngFor="let subGroup of group.subGroups"
   [group]="subGroup"
   [rowHeight]="rowHeight"
-  [scale]="scale"></app-row-group>
+  [scale]="scale"
+  [phase]="phase"></app-row-group>

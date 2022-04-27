@@ -1,6 +1,7 @@
 .grid-row {
   outline: 1px solid gray;
   outline-offset: -1px;
+  overflow: hidden;
 }
 
 .grid-row.sticky {

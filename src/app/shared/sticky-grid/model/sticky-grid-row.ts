@@ -1,4 +1,4 @@
 export interface StickyGridRow {
   name: string;
-  data?: [{start: number; stop: number}];
+  data?: {start: number; stop: number}[];
 }
