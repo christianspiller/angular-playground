@@ -1,0 +1,11 @@
+<div class="grid-header-row sticky"
+     [style.top]="(group.level-1) * rowHeight + 'px'"
+     [style.background]="group.color"
+     [style.z-index]="(10 - group.level)">{{group.name}}</div>
+<div class="grid-header-row"
+     *ngFor="let row of group.rows">{{row.name}}</div>
+
+<app-header-row-group class="header-row-group"
+               *ngFor="let subGroup of group.subGroups"
+               [group]="subGroup"
+               [rowHeight]="rowHeight"></app-header-row-group>

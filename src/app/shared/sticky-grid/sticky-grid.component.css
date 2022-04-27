@@ -11,6 +11,10 @@
   background: lightgray;
 }
 
+.grid-phase.row-headers {
+  flex: 0 0 200px;
+}
+
 .grid-phase.sticky {
   position: sticky;
   left: 0;

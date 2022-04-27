@@ -2,11 +2,11 @@
 
   <div class="grid-phase sticky row-headers"
     [style.height]="numRows * rowHeight + 'px'">
-    <app-row-group class="row-group"
+    <app-header-row-group class="header-row-group"
                    *ngFor="let group of groups"
                    [group]="group"
                    [rowHeight]="rowHeight">
-    </app-row-group>
+    </app-header-row-group>
   </div>
   <div class="grid-phase"
        *ngFor="let phase of phases; let phaseId = index"
