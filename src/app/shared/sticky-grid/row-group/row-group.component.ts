@@ -12,8 +12,12 @@ export class RowGroupComponent implements OnInit {
   @Input()
   public rowHeight: number = 25;
 
+  @Input()
+  public scale: string[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 }

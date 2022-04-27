@@ -21,11 +21,3 @@
   z-index: 20;
 }
 
-.grid-cell {
-  position: absolute;
-  width: 40px;
-  height: 25px;
-
-  outline: 1px solid gray;
-  outline-offset: -1px;
-}

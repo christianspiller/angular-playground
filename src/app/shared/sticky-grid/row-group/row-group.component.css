@@ -7,3 +7,15 @@
 .grid-row.sticky {
   position: sticky;
 }
+
+.grid-cell {
+  position: absolute;
+  height: 25px;
+
+  outline: 1px solid gray;
+  outline-offset: -1px;
+}
+
+.grid-row-scale {
+  position: relative;
+}

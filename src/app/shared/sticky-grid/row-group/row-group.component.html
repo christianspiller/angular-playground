@@ -3,9 +3,18 @@
   [style.background]="group.color"
   [style.z-index]="(10 - group.level)"></div>
 <div class="grid-row"
-  *ngFor="let row of group.rows"></div>
+  *ngFor="let row of group.rows">
+  <div class="grid-row-scale">
+    <div class="grid-cell"
+         *ngFor="let cell of scale; let cellIndex = index"
+        [style.left]="(cellIndex * 100) / scale.length + '%'"
+    [style.width]="100 / scale.length + '%'">
+    </div>
+  </div>
+</div>
 
 <app-row-group class="row-group"
   *ngFor="let subGroup of group.subGroups"
   [group]="subGroup"
-  [rowHeight]="rowHeight"></app-row-group>
+  [rowHeight]="rowHeight"
+  [scale]="scale"></app-row-group>
