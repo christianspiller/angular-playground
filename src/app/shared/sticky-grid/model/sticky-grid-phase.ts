@@ -3,4 +3,5 @@ export interface StickyGridPhase {
   zoomX: number;
   start: number;
   stop: number;
+  scale: string[];
 }

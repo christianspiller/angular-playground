@@ -1,6 +1,7 @@
 import {Component, ElementRef, HostListener, AfterViewInit, ViewChild} from '@angular/core';
 import {StickyGridPhase} from "../../shared/sticky-grid/model/sticky-grid-phase";
 import {StickyGridGroup} from "../../shared/sticky-grid/model/sticky-grid-group";
+import {StickyGridScale} from "../../shared/sticky-grid/model/sticky-grid-scale";
 
 @Component({
   selector: 'app-grid',
@@ -15,10 +16,19 @@ export class GridComponent implements AfterViewInit {
 
   // public gridData: GridDataModel = {
   public phases: StickyGridPhase[] = [
-    {name: "phase1", zoomX: 1, start: 0, stop: 60},
-    {name: "phase2", zoomX: 2, start: 60, stop: 140},
-    {name: "phase3", zoomX: 1, start: 140, stop: 160}
+    {name: "phase1", zoomX: 1, start: 0, stop: 120, scale: [] },
+    {name: "phase2", zoomX: 10, start: 300, stop: 1000, scale: []},
+    {name: "phase3", zoomX: 1, start: 1000, stop: 1060, scale: []}
   ];
+
+  public scales: StickyGridScale[] = [
+    {
+      factor: 1,
+      maxWidth: 100,
+      minWidth: 20
+    }
+  ];
+
   public groups: StickyGridGroup[] = [
       {
         name: "App 1",
@@ -89,7 +99,6 @@ export class GridComponent implements AfterViewInit {
 
 
   increaseZoom(phaseId: number) {
-    // this.gridData.phases[phaseId] *=1.2;
     this.phases[phaseId].zoomX *= 1.2;
   }
 

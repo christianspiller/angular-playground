@@ -16,18 +16,10 @@ export class StickyGridComponent implements OnInit {
   public groups: StickyGridGroup[] = [];
 
   @Input()
-  public scales: StickyGridScale[] = [
-    {
-      numColumns: 60,
-      maxWidth: 100,
-      minWidth: 20
-    }
-  ];
+  public scales: StickyGridScale[] = [];
 
   @Input()
   public rowHeight: number = 25;
-
-  public selectedScale: string[] = [];
 
   private _numRows: number = 1;
 
@@ -59,6 +51,8 @@ export class StickyGridComponent implements OnInit {
   }
 
   private calculateScale() {
-    this.selectedScale = new Array(this.scales[0].numColumns);
+    for(let phase of this.phases) {
+      phase.scale = new Array(this.scales[0].factor * (phase.stop - phase.start));
+    }
   }
 }

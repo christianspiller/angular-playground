@@ -1,5 +1,5 @@
 export interface StickyGridScale {
-  numColumns: number;
+  factor: number;
   minWidth: number;
   maxWidth: number;
 }
