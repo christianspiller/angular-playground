@@ -1,9 +1,11 @@
 <div class="grid-row sticky"
   [style.top]="(group.level-1) * rowHeight + 'px'"
   [style.background]="group.color"
-  [style.z-index]="(10 - group.level)"></div>
+  [style.z-index]="(10 - group.level)"
+     [style.height]="rowHeight + 'px'"></div>
 <div class="grid-row"
-  *ngFor="let row of group.rows">
+  *ngFor="let row of group.rows"
+  [style.height]="rowHeight + 'px'">
   <div class="grid-row-scale">
     <div class="grid-cell"
          *ngFor="let cell of scale; let cellIndex = index"
