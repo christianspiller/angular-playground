@@ -7,8 +7,10 @@
 }
 
 .grid-phase {
-  flex: 1 0 600px;
+  flex: 0 0 600px;
   background: lightgray;
+  outline: 1px solid black;
+  outline-offset: -1px;
 }
 
 .grid-phase.row-headers {

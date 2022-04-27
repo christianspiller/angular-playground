@@ -15,9 +15,9 @@ export class GridComponent implements AfterViewInit {
 
   // public gridData: GridDataModel = {
   public phases: StickyGridPhase[] = [
-    {name: "phase1", zoomX: 0.25},
-    {name: "phase2", zoomX: 0.5},
-    {name: "phase3", zoomX: 0.5}
+    {name: "phase1", zoomX: 1, start: 0, stop: 60},
+    {name: "phase2", zoomX: 2, start: 60, stop: 140},
+    {name: "phase3", zoomX: 1, start: 140, stop: 160}
   ];
   public groups: StickyGridGroup[] = [
       {
@@ -30,7 +30,7 @@ export class GridComponent implements AfterViewInit {
             color: 'orange',
             level: 2,
             subGroups: [],
-            rows: [{name: "udp1"}, {name: "udp2"}, {name: "udp3"}]
+            rows: [{name: "udp1", data: [{start: 1, stop: 5}]}, {name: "udp2"}, {name: "udp3"}]
           },
           {
             name: "TCP 1",

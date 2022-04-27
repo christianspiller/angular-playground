@@ -12,7 +12,8 @@
   <!-- Grid -->
   <div class="grid-phase"
        *ngFor="let phase of phases; let phaseId = index"
-       [style.height]="numRows * rowHeight + 'px'">
+       [style.height]="numRows * rowHeight + 'px'"
+       [style.flex-basis]="phase.zoomX * 600 + 'px'">
     <app-row-group class="row-group"
       *ngFor="let group of groups"
       [group]="group"
