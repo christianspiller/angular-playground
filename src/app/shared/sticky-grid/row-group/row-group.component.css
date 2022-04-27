@@ -1,0 +1,9 @@
+.grid-row {
+  height: 25px;
+  outline: 1px solid gray;
+  outline-offset: -1px;
+}
+
+.grid-row.sticky {
+  position: sticky;
+}

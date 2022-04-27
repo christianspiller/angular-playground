@@ -1,5 +1,6 @@
 import {Component, ElementRef, HostListener, AfterViewInit, ViewChild} from '@angular/core';
-import {GridDataModel} from "../../shared/custom-grid/model/grid-data.model";
+import {StickyGridPhase} from "../../shared/sticky-grid/model/sticky-grid-phase";
+import {StickyGridGroup} from "../../shared/sticky-grid/model/sticky-grid-group";
 
 @Component({
   selector: 'app-grid',
@@ -12,55 +13,58 @@ export class GridComponent implements AfterViewInit {
   @ViewChild('resizeAndScroll')
   private el: ElementRef | undefined;
 
-  public gridData: GridDataModel = {
-    phases: [0.25],
-    groups: [
+  // public gridData: GridDataModel = {
+  public phases: StickyGridPhase[] = [
+    {name: "phase1", zoomX: 0.25},
+    {name: "phase2", zoomX: 0.5},
+    {name: "phase3", zoomX: 0.5}
+  ];
+  public groups: StickyGridGroup[] = [
       {
         name: "App 1",
         color: 'red',
         level: 1,
-        groups: [
+        subGroups: [
           {
             name: "UDP 1",
             color: 'orange',
             level: 2,
-            groups: [],
-            tracks: [{name: "udp1"}, {name: "udp2"}, {name: "udp3"}]
+            subGroups: [],
+            rows: [{name: "udp1"}, {name: "udp2"}, {name: "udp3"}]
           },
           {
             name: "TCP 1",
             color: 'brown',
             level: 2,
-            groups: [],
-            tracks: [{name: "tcp1"}, {name: "tcp2"}, {name: "tcp3"}, {name: "tcp4"}]
+            subGroups: [],
+            rows: [{name: "tcp1"}, {name: "tcp2"}, {name: "tcp3"}, {name: "tcp4"}]
           },
         ],
-        tracks: [{name: "ax"}, {name: "ay"}, {name: "az"}]
+        rows: [{name: "ax"}, {name: "ay"}, {name: "az"}]
       },
       {
         name: "App 2",
         color: 'blue',
         level: 1,
-        groups: [
+        subGroups: [
           {
             name: "UDP 2",
             color: 'violet',
             level: 2,
-            groups: [],
-            tracks: [{name: "udp4"}, {name: "udp5"}, {name: "udp6"}]
+            subGroups: [],
+            rows: [{name: "udp4"}, {name: "udp5"}, {name: "udp6"}]
           },
           {
             name: "TCP 2",
             color: 'pink',
             level: 2,
-            groups: [],
-            tracks: [{name: "tcp5"}, {name: "tcp6"}, {name: "tcp7"}, {name: "tcp8"}]
+            subGroups: [],
+            rows: [{name: "tcp5"}, {name: "tcp6"}, {name: "tcp7"}, {name: "tcp8"}]
           },
         ],
-        tracks: []
+        rows: []
       },
-    ]
-  };
+    ];
 
   constructor() { }
 
@@ -85,10 +89,11 @@ export class GridComponent implements AfterViewInit {
 
 
   increaseZoom(phaseId: number) {
-    this.gridData.phases[phaseId] *=1.2;
+    // this.gridData.phases[phaseId] *=1.2;
+    this.phases[phaseId].zoomX *= 1.2;
   }
 
   decreaseZoom(phaseId: number) {
-    this.gridData.phases[phaseId] *=0.8;
+    this.phases[phaseId].zoomX *= 0.8;
   }
 }

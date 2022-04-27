@@ -36,7 +36,11 @@
 
 .grid-phase {
   height: 500px;
-  flex: 1 0 600px;
+  flex: 1 0 700px;
+}
+
+.grid-phase.header {
+  flex: 1 0 200px;
 }
 
 .grid-row {

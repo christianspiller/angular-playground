@@ -1,9 +1,9 @@
 <div class="grid-view">
   <div class="view-header">
     <span>THE HEADER</span>
-    <span *ngFor="let phase of gridData.phases; let phaseId = index">phase {{phaseId}}
-      <span style="cursor: pointer" (click)="increaseZoom(phaseId)">( + )</span>
-      <span style="cursor: pointer" (click)="decreaseZoom(phaseId)">( - )</span>
+    <span *ngFor="let phase of phases; let phaseIndex = index">phase {{phaseIndex}}
+      <span style="cursor: pointer" (click)="increaseZoom(phaseIndex)">( + )</span>
+      <span style="cursor: pointer" (click)="decreaseZoom(phaseIndex)">( - )</span>
     </span>
   </div>
   <div class="view-row" #resizeAndScroll (scroll)="onScroll()">
@@ -13,82 +13,10 @@
 <!--                       [id]="group.name"-->
 <!--                     [group]="group"></app-custom-grid>-->
 <!--    </div>-->
-    <div class="grid-container">
-      <div class="grid-phase" style="background: yellow; position: sticky; left: 0; z-index: 20">
-        <div class="row-group">
-          <div class="grid-row sticky-1">APP 1</div>
-          <div class="grid-row">track A1.1</div>
-          <div class="grid-row">track A1.2</div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">UDP 1</div>
-            <div class="grid-row">udp 1.1</div>
-            <div class="grid-row">udp 1.2.2</div>
-          </div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">TCP 1</div>
-            <div class="grid-row">tcp 1.1</div>
-            <div class="grid-row">tcp 1.2</div>
-            <div class="grid-row">tcp 1.3</div>
-          </div>
-        </div>
-        <div class="row-group">
-          <div class="grid-row sticky-1">APP 2</div>
-          <div class="grid-row">track A2.1</div>
-          <div class="grid-row">track A2.2</div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">UDP 2</div>
-            <div class="grid-row">udp 2.1</div>
-            <div class="grid-row">udp 2.2</div>
-          </div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">TCP 2</div>
-            <div class="grid-row">tcp 2.1</div>
-            <div class="grid-row">tcp 2.2</div>
-            <div class="grid-row">tcp 2.3</div>
-          </div>
-        </div>
-      </div>
-      <div class="grid-phase" style="background: aqua">
-        <div class="row-group">
-          <div class="grid-row sticky-1">APP 1</div>
-          <div class="grid-row">track A1.1</div>
-          <div class="grid-row">track A1.2</div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">UDP 1</div>
-            <div class="grid-row">udp 1.1</div>
-            <div class="grid-row">udp 1.2.2</div>
-          </div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">TCP 1</div>
-            <div class="grid-row">tcp 1.1</div>
-            <div class="grid-row">tcp 1.2</div>
-            <div class="grid-row">tcp 1.3</div>
-          </div>
-        </div>
-        <div class="row-group">
-          <div class="grid-row sticky-1">
-            <div class="grid-cell" style="left: 0"></div>
-            <div class="grid-cell" style="left: 40px"></div>
-          </div>
-          <div class="grid-row">track A1.1</div>
-          <div class="grid-row">track A1.2</div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">UDP 1</div>
-            <div class="grid-row">udp 1.1</div>
-            <div class="grid-row">udp 1.2.2</div>
-          </div>
-          <div class="row-group">
-            <div class="grid-row sticky-2">TCP 1</div>
-            <div class="grid-row">tcp 1.1</div>
-            <div class="grid-row">tcp 1.2</div>
-            <div class="grid-row">tcp 1.3</div>
-          </div>
-        </div>
-      </div>
-      <div class="grid-phase" style="background: greenyellow">
-
-      </div>
-    </div>
+    <app-sticky-grid
+      [groups]="groups"
+      [phases]="phases"
+      [rowHeight]="25"></app-sticky-grid>
   </div>
   <div class="view-footer">
     <span>THE FOOTER</span>

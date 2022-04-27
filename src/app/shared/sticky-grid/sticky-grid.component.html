@@ -1,0 +1,19 @@
+<div class="grid-container">
+
+  <div class="grid-phase sticky row-headers">
+    <app-row-group class="row-group"
+                   *ngFor="let group of groups"
+                   [group]="group"
+                   [rowHeight]="rowHeight">
+    </app-row-group>
+  </div>
+  <div class="grid-phase"
+       *ngFor="let phase of phases; let phaseId = index">
+    <app-row-group class="row-group"
+      *ngFor="let group of groups"
+      [group]="group"
+      [rowHeight]="rowHeight">
+    </app-row-group>
+  </div>
+
+</div>
