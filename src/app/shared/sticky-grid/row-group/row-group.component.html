@@ -2,7 +2,8 @@
   [style.top]="(group.level-1) * rowHeight + 'px'"
   [style.background]="group.color"
   [style.z-index]="(10 - group.level)"
-     [style.height]="rowHeight + 'px'"></div>
+     [style.height]="rowHeight + 'px'">
+</div>
 <div class="grid-row"
   *ngFor="let row of group.rows"
   [style.height]="rowHeight + 'px'">
