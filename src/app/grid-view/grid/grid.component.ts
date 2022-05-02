@@ -2,7 +2,6 @@ import {Component, ElementRef, HostListener, AfterViewInit, ViewChild} from '@an
 import {StickyGridPhase} from "../../shared/sticky-grid/model/sticky-grid-phase";
 import {StickyGridGroup} from "../../shared/sticky-grid/model/sticky-grid-group";
 import {StickyGridScale} from "../../shared/sticky-grid/model/sticky-grid-scale";
-import {StickyGridRow} from "../../shared/sticky-grid/model/sticky-grid-row";
 
 @Component({
   selector: 'app-grid',
@@ -63,16 +62,17 @@ export class GridComponent implements AfterViewInit {
             color: 'violet',
             level: 2,
             subGroups: [],
-            rows: function () {
-              let rows: StickyGridRow[] = [];
-                for(let i=0; i< 200; i++) {
-                  rows.push({
-                    name: "udp" + i,
-                    data: [{start: i+40, stop: 1000-(i*2)}]
-                  })
-                }
-                return rows;
-              }()
+            rows: [{name: "udp1"}, {name: "udp2"}]
+            // rows: function () {
+            //   let rows: StickyGridRow[] = [];
+            //     for(let i=0; i< 200; i++) {
+            //       rows.push({
+            //         name: "udp" + i,
+            //         data: [{start: i+40, stop: 1000-(i*2)}]
+            //       })
+            //     }
+            //     return rows;
+            //   }()
           },
           {
             name: "TCP 2",
