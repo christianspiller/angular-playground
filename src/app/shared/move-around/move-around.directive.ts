@@ -2,6 +2,12 @@ import {Directive, ElementRef, Inject, OnDestroy, OnInit} from '@angular/core';
 import {fromEvent, Subscription, takeUntil} from "rxjs";
 import {DOCUMENT} from "@angular/common";
 
+/*
+* Directive for moving the task bars in the grid.
+* Source: https://indepth.dev/posts/1396/drag-drop-directive
+* */
+
+
 @Directive({
   selector: '[appMoveAround]'
 })
