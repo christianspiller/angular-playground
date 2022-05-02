@@ -14,7 +14,7 @@ export class RowGroupComponent implements OnInit {
   public rowHeight: number = 25;
 
   @Input()
-  public phase: StickyGridPhase = {name: "", start: 0, stop: 0, zoomX: 0, scale: []}
+  public phase: StickyGridPhase = {name: "", start: 0, stop: 0, zoomX: 0, scales: []}
 
   constructor() { }
 

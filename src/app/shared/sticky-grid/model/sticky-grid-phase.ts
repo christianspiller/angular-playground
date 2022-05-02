@@ -3,5 +3,15 @@ export interface StickyGridPhase {
   zoomX: number;
   start: number;
   stop: number;
-  scale: string[];
+  scales: StickyGridVisibleScale[]
+}
+
+export interface StickyGridVisibleScale {
+  length: number;
+  elements: StickyGridScaleElement[];
+}
+
+export interface StickyGridScaleElement {
+  index: number;
+  value: string;
 }

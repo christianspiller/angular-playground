@@ -9,9 +9,9 @@
   [style.height]="rowHeight + 'px'">
   <div class="grid-row-scale">
     <div class="grid-cell"
-         *ngFor="let cell of phase.scale; let cellIndex = index"
-        [style.left]="(cellIndex * 100) / phase.scale.length + '%'"
-        [style.width]="100 / phase.scale.length + '%'">
+         *ngFor="let cell of phase.scales[0].elements"
+        [style.left]="(cell.index * 100) / phase.scales[0].length + '%'"
+        [style.width]="100 / phase.scales[0].length + '%'">
     </div>
     <div *ngFor="let data of filter(phase, row.data)"
       style="position: absolute; height: 19px; background: blue; margin-top: 3px"

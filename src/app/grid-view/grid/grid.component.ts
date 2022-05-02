@@ -17,9 +17,9 @@ export class GridComponent implements AfterViewInit {
 
   // public gridData: GridDataModel = {
   public phases: StickyGridPhase[] = [
-    {name: "phase1", zoomX: 1, start: 0, stop: 120, scale: [] },
-    {name: "phase2", zoomX: 10, start: 300, stop: 1000, scale: []},
-    {name: "phase3", zoomX: 1, start: 1000, stop: 1060, scale: []}
+    {name: "phase1", zoomX: 1, start: 0, stop: 120, scales: [] },
+    {name: "phase2", zoomX: 10, start: 300, stop: 1000, scales: []},
+    {name: "phase3", zoomX: 1, start: 1000, stop: 1060, scales: []}
   ];
 
   public scales: StickyGridScale[] = [
