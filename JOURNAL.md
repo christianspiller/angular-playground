@@ -38,3 +38,13 @@ Create alias:
     $> npm install @bryntum/gantt@npm:@bryntum/gantt-trial@5.0.3
 The alias can be replaced with @bryntum/gantt@5.0.3 in package.json when we have the license. So the code imports don't need to be changed. 
 
+### Styles
+Add
+
+    @import "@bryntum/gantt/gantt.material.css";
+to src/styles.css
+
+### Module Dependency
+Add BryntumGanttModule to the containing module
+
+

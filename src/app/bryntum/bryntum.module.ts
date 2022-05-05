@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BryntumRoutingModule } from './bryntum-routing.module';
 import { BryntumComponent } from './bryntum.component';
+import {BryntumGanttModule} from "@bryntum/gantt-angular";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { BryntumComponent } from './bryntum.component';
   ],
   imports: [
     CommonModule,
-    BryntumRoutingModule
+    BryntumRoutingModule,
+    BryntumGanttModule
   ]
 })
 export class BryntumModule { }
