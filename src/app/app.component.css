@@ -6,6 +6,18 @@
   height: 55px;
 }
 
+.visual-composer .title a {
+  margin-left: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.visual-composer .title a.routed {
+  background: orange;
+}
+
 .visual-composer .content {
   height: calc(100% - 85px);
   margin-left: 5px;
