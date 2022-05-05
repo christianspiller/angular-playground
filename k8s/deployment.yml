@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo-app-deployment
+  name: demo-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo-app-deployment
+    spec:
+      containers:
+      - image: localhost:32000/demo-app:first
+        name: demo-app
+        resources: {}
+        imagePullPolicy: Always
+status: {}
