@@ -45,6 +45,6 @@ Add
 to src/styles.css
 
 ### Module Dependency
-Add BryntumGanttModule to the containing module
+Add BryntumGanttModule to the imports of the containing module
 
 
