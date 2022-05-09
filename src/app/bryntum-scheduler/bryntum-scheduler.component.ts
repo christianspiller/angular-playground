@@ -1,95 +1,62 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  AssignmentModel,
-  EventModel, ProjectModel,
-  ResourceInfoColumn,
-  ResourceModel
-} from "@bryntum/gantt/gantt.lite.umd.js";
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {ProjectModel, SchedulerPro} from "@bryntum/gantt/gantt.lite.umd.js";
+import {BryntumSchedulerProComponent} from "@bryntum/gantt-angular";
 
 @Component({
   selector: 'app-bryntum-scheduler',
   templateUrl: './bryntum-scheduler.component.html',
   styleUrls: ['./bryntum-scheduler.component.css']
 })
-export class BryntumSchedulerComponent implements OnInit {
-  public startDate: Date = new Date(0);
-  public endDate: Date = new Date (20 * 60 * 1000);
-  public presets = [
-    // PresetManager.records[23],
-    {
-      id              : 'myNewPreset',
-      base            : 'secondAndMinute', // Based on an existing preset
-      columnLinesFor  : 0,
-      shiftIncrement: 10,
-      shiftUnit: "second",
-      timeResolution: {
-        unit: "second",
-        increment:  1
-      },
-      headers : [
-        {
-          unit       : 'minute',
-          dateFormat : 'hh:mm'
-        },
-        {
-          unit       : 'second',
-          dateFormat : 'ss\'\'',
-          increment: 10
-        }
-      ]
-    }
-  ];
+export class BryntumSchedulerComponent implements AfterViewInit {
 
-  columns: ResourceInfoColumn[] = [
-    // new ResourceInfoColumn({
-    //   field: "name",
-    //   text: "name"
-    // })
-  ];
+  @ViewChild(BryntumSchedulerProComponent) schedulerProComponent: BryntumSchedulerProComponent | undefined;
+  scheduler: SchedulerPro|undefined;
+  public startDate: Date = new Date(2022, 1, 1, 0, 0, 0, 0);
+  // public startDate: Date = new Date(0);
+  public endDate: Date = new Date (this.startDate.getTime() + 4 * 24 * 60 * 60 * 1000);
 
   id: number = 0;
 
-  events: EventModel[] = [];
-  resources: ResourceModel[] = [];
-  assignments: AssignmentModel[] = [];
   project: ProjectModel = new ProjectModel({
 
   });
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.addEvent(this.id++);
+  ngAfterViewInit(): void {
+    // store Bryntum Scheduler Pro instance
+    this.scheduler = this.schedulerProComponent?.instance;
   }
 
-  addEvent(id: number): void {
-    let resource = new ResourceModel({
-      id: "r" + id,
-      name: "Resource " + id
+  addResource() {
+    const id = this.id++;
+    this.scheduler?.resourceStore.add({
+      id: id,
+      name: 'Resource ' + id
     });
-    // let resource = this.resources[0];
+  }
 
-    this.resources.push(resource)
+  addEvent() {
+    const id = this.id++;
+    this.scheduler?.eventStore.add({
+      id: id,
+      name: 'Event ' + id,
+      startDate: this.startDate,
+      duration: 8,
+      durationUnit: 'second'
+    });
 
+    this.scheduler?.assignmentStore.add({
+      event: id,
+      resource: 0
+    });
 
-    // const event = new EventModel({
-    //   id: "e" + id,
-    //   name: "Event " + id,
-    //   startDate: new Date(0),
-    //   endDate: new Date(8000)
-    // });
-    //
-    // this.events.push(event);
-    //
-    // this.assignments.push(
-    //   new AssignmentModel(
-    //   {resource: "r0", event: "e0"})
-    // );
-
+    console.log(this.scheduler?.events);
   }
 
   preventScrollOutside($event: any) {
     $event.to.options.startDate = new Date(0);
     $event.to.options.endDate = new Date(this.endDate);
   }
+
 }

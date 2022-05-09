@@ -61,3 +61,9 @@ The bryntum css is huge and therefor in angular.json the budget needs to be incr
    
     configurations.production.budgets: type: anyComponentStyle, maximumError: 
 
+### Scrolling
+Prevent scrolling outside project range by adding listener onBeforePresetChange:
+https://www.bryntum.com/forum/viewtopic.php?f=44&t=18489&start=10
+
+### Bugs
+#### Events start date changes to year -27000 when start Date is new Date(0)
