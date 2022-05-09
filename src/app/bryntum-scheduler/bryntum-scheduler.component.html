@@ -1,10 +1,17 @@
-<bryntum-scheduler-pro
-  [startDate]="startDate"
+<bryntum-project-model
+  #project
+  [startDate] = "startDate"
   [endDate]="endDate"
-  [viewPreset]="'secondAndMinute'"
-  [columns]="[{field: 'name', text: 'Name'}]"
-  [resources]="resources"
-  [events]="events"
-  [assignments]="assignments"
+  [assignments] = "assignments"
+  [resources] = "resources"
+></bryntum-project-model>
 
+<bryntum-scheduler-pro
+  [startDate] = "startDate"
+  [endDate]="endDate"
+  [events] = "events"
+  [columns] = "[{field: 'name', text: 'Name'}]"
+  [project] = "project"
+  [viewPreset] = "'secondAndMinute'"
+  (onBeforePresetChange)="preventScrollOutside($event)"
 ></bryntum-scheduler-pro>

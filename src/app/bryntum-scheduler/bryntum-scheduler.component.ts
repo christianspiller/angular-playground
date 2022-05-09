@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AssignmentModel,
-  Column,
-  EventModel, PresetManager, ProjectModel,
-  ResourceCalendarColumn,
+  EventModel, ProjectModel,
   ResourceInfoColumn,
   ResourceModel
 } from "@bryntum/gantt/gantt.lite.umd.js";
@@ -15,7 +13,7 @@ import {
 })
 export class BryntumSchedulerComponent implements OnInit {
   public startDate: Date = new Date(0);
-  public endDate: Date = new Date (4 * 60 * 60 * 1000);
+  public endDate: Date = new Date (20 * 60 * 1000);
   public presets = [
     // PresetManager.records[23],
     {
@@ -90,4 +88,8 @@ export class BryntumSchedulerComponent implements OnInit {
 
   }
 
+  preventScrollOutside($event: any) {
+    $event.to.options.startDate = new Date(0);
+    $event.to.options.endDate = new Date(this.endDate);
+  }
 }
