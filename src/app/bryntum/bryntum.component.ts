@@ -38,8 +38,34 @@ export class BryntumComponent implements OnInit {
     ]
   }
   ];
+  features: any = {
+    taskEdit : {
+      items : {
+        generalTab      : {
+          items : {
+            // Remove "% Complete","Effort", and the divider in the "General" tab
+            percentDone : false,
+            effort      : false,
+            divider     : false
+          }
+        },
+        // Remove all tabs except the "General" and the "Notes" tab
+        predecessorsTab : false,
+        successorsTab   : false,
+        resourcesTab    : false,
+        advancedTab     : false
+      }
+    }
+  };
 
-
+  listeners: any = {
+    beforeTaskEditShow({ editor, taskRecord }:any) {
+      console.log(editor?.widgetMap?.noteField);
+      console.log(taskRecord);
+      taskRecord._data.note = "Hallo!";
+      console.log("LISTEN!");
+    }
+  };
 
   constructor() { }
 
@@ -50,7 +76,8 @@ export class BryntumComponent implements OnInit {
 
   public addTask() {
     this.tasks.push(new TaskModel({
-      name          : 'My task' + this.numTasks++
+      name: 'My task ' + this.numTasks++,
+      note: "Hallöle!"
     }));
   }
 
