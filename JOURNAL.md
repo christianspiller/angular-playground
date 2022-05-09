@@ -12,6 +12,15 @@ ng g module <name> --routing=true --route=path --module=app.module
 ### neue Komponente
 ng g component <name>
 
+## Nginx
+Nginx is the better choice to serve Angular files in production mode.
+There is a Docker-Template (FROM nginx:alpine) which can be used. In the
+configuration (nginx.conf) it is necessary to set the routing for Angular Apps.
+
+    location / {
+        try_files $uri $uri/ /index.html; // <= instead of =404
+    }
+
 
 ## Bryntum installation (trial)
 ### NPM
@@ -47,4 +56,8 @@ to src/styles.css
 ### Module Dependency
 Add BryntumGanttModule to the imports of the containing module
 
+### File-size budget
+The bryntum css is huge and therefor in angular.json the budget needs to be increased:
+   
+    configurations.production.budgets: type: anyComponentStyle, maximumError: 
 
