@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BryntumSchedulerRoutingModule } from './bryntum-scheduler-routing.module';
 import { BryntumSchedulerComponent } from './bryntum-scheduler.component';
+import {BryntumGanttModule} from "@bryntum/gantt-angular";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { BryntumSchedulerComponent } from './bryntum-scheduler.component';
   ],
   imports: [
     CommonModule,
-    BryntumSchedulerRoutingModule
+    BryntumSchedulerRoutingModule,
+    BryntumGanttModule
   ]
 })
 export class BryntumSchedulerModule { }

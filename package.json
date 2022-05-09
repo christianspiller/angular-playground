@@ -22,6 +22,8 @@
     "@bryntum/gantt": "npm:@bryntum/gantt-trial@^5.0.3",
     "@bryntum/gantt-angular": "^5.0.3",
     "@bryntum/gantt-trial": "^5.0.3",
+    "@bryntum/schedulerpro": "npm:@bryntum/schedulerpro-trial@^5.0.3",
+    "@bryntum/schedulerpro-angular": "^5.0.3",
     "dhtmlx-gantt": "^7.1.10",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

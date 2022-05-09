@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@bryntum/gantt/gantt.material.css";
+@import "@bryntum/schedulerpro/schedulerpro.material.css";
 
 html, body {
   height: 100%;
