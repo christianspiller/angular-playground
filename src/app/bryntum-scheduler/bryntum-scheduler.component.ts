@@ -28,12 +28,26 @@ export class BryntumSchedulerComponent implements AfterViewInit {
     this.scheduler = this.schedulerProComponent?.instance;
   }
 
-  addResource() {
+  addResource(parent: number|undefined) {
     const id = this.id++;
-    this.scheduler?.resourceStore.add({
-      id: id,
-      name: 'Resource ' + id
-    });
+
+    if(parent === undefined) {
+      this.scheduler?.resourceStore.add({
+        id: id,
+        name: 'Resource ' + id,
+        children: [
+          {id: id + 100,
+          name: 'Child Resource ' + (id + 100)}
+        ]
+      });
+    } else {
+      this.scheduler?.resourceStore.getAt(0).insertChild({
+        id: id,
+        name: 'Resource ' + id
+      });
+    }
+
+    console.log(this.scheduler?.resources);
   }
 
   addEvent() {

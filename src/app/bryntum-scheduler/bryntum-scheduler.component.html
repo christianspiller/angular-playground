@@ -1,13 +1,15 @@
 <div>
-  <span (click)="addResource()">Add Resource</span>
+  <span (click)="addResource(undefined)">Add Resource</span>
+  <span (click)="addResource(0)">Add Child Resource</span>
   <span (click)="addEvent()">Add Event</span>
 </div>
 
 <bryntum-scheduler-pro
   [startDate] = "startDate"
   [endDate]="endDate"
-  [columns] = "[{field: 'name', text: 'Name'}]"
+  [columns] = "[{field: 'name', text: 'Name', type: 'tree'}]"
   [project]="project"
+  [features]="{tree:true}"
 
   [viewPreset] = "'secondAndMinute'"
   (onPresetChange)="preventScrollOutside($event)"
