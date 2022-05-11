@@ -67,3 +67,7 @@ https://www.bryntum.com/forum/viewtopic.php?f=44&t=18489&start=10
 
 ### Bugs
 #### Events start date changes to year -27000 when start Date is new Date(0)
+#### Use correct imports
+A lot of classes (EventModel, EventStore) exist also in the gantt-module. A had a lot of errors
+'X is null' and similar when customizing.
+Only use '@bryntum/schedulerpro/schedulerpro.lite.umd.js' for bryntum-scheduler module!

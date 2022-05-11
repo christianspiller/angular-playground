@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {ProjectModel, SchedulerPro} from "@bryntum/gantt/gantt.lite.umd.js";
-import {BryntumSchedulerProComponent} from "@bryntum/gantt-angular";
+// import {ProjectModel, SchedulerPro} from "@bryntum/gantt/gantt.lite.umd.js";
+import {BryntumSchedulerProComponent} from "@bryntum/schedulerpro-angular";
+import {ProjectModel, SchedulerPro} from "@bryntum/schedulerpro/schedulerpro.lite.umd.js";
+import {VcEvent} from "./model/vc-event";
 
 @Component({
   selector: 'app-bryntum-scheduler',
