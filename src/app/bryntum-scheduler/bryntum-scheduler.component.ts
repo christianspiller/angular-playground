@@ -1,15 +1,16 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-// import {ProjectModel, SchedulerPro} from "@bryntum/gantt/gantt.lite.umd.js";
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {BryntumSchedulerProComponent} from "@bryntum/schedulerpro-angular";
 import {ProjectModel, SchedulerPro} from "@bryntum/schedulerpro/schedulerpro.lite.umd.js";
 import {VcEvent} from "./model/vc-event";
+import {VcResource} from "./model/vc-resource";
+import {CellMenuItems} from "./util/cell-menu-items";
 
 @Component({
   selector: 'app-bryntum-scheduler',
   templateUrl: './bryntum-scheduler.component.html',
   styleUrls: ['./bryntum-scheduler.component.css']
 })
-export class BryntumSchedulerComponent implements AfterViewInit {
+export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
 
   @ViewChild(BryntumSchedulerProComponent) schedulerProComponent: BryntumSchedulerProComponent | undefined;
   scheduler: SchedulerPro | undefined;
@@ -20,54 +21,47 @@ export class BryntumSchedulerComponent implements AfterViewInit {
   id: number = 0;
 
   project: ProjectModel = new ProjectModel({
-    eventModelClass: VcEvent
+    eventModelClass: VcEvent,
+    resourceModelClass: VcResource
   });
 
-  features: any = {
-    tree: true,
-    cellMenu: {
-      items: {
-        resourceItem:
-          {
-            text: 'Add new resource',
-            icon: 'b-fa b-fa-plus',
-            weight: 200,
-            onItem: () => {
-              console.log("new resource");
-              this.addResource(undefined);
-            }
-          }
-      }
-    }
-  };
+  features: any = {};
 
   ngAfterViewInit(): void {
     // store Bryntum Scheduler Pro instance
     this.scheduler = this.schedulerProComponent?.instance;
   }
 
-  addResource(parent: number|undefined) {
+  addResource() {
     const id = this.id++;
 
-    if (parent === undefined) {
-      this.scheduler?.resourceStore.add({
-        id: id,
-        name: 'Resource ' + id,
-        children: [
-          {
-            id: id + 100,
-            name: 'Child Resource ' + (id + 100)
-          }
-        ]
-      });
-    } else {
-      this.scheduler?.resourceStore.getAt(0).insertChild({
-        id: id,
-        name: 'Resource ' + id
-      });
-    }
+    this.scheduler?.resourceStore.add({
+      id: id,
+      name: 'Application ' + id
+    });
+  }
 
-    console.log(this.scheduler?.resources);
+  addCustomEventGroup(parentId: number) {
+    this.insertChild(parentId, 'group', 'Group ');
+  }
+
+  addEventSequence(parentId: number) {
+    this.insertChild(parentId, 'event-sequence', 'Event Sequence ');
+  }
+
+  addEventTrack(parentId: number) {
+    this.insertChild(parentId, 'track', 'Track ');
+  }
+
+  insertChild(parentId: number, type: string, nameTemplate: string) {
+    const id = this.id++;
+    const parent = this.scheduler?.resourceStore.getById(parentId) as VcResource;
+    parent?.appendChild({
+      id: id,
+      name: nameTemplate + id,
+      groupType: type
+    });
+    this.scheduler?.resourceStore.toggleCollapse(parent?.id, parent?.expanded === false);
   }
 
   addEvent() {
@@ -91,6 +85,27 @@ export class BryntumSchedulerComponent implements AfterViewInit {
   preventScrollOutside($event: any) {
     $event.to.options.startDate = new Date(0);
     $event.to.options.endDate = new Date(this.endDate);
+  }
+
+  ngOnInit(): void {
+    const that = this;
+
+    this.features = {
+      tree: true,
+      cellMenu: {
+        processItems({items, record}: any) {
+          if (record.groupType === 'application') {
+            items.newGroupItem = CellMenuItems.newGroupItem(that, record);
+            items.newEventSequenceItem = CellMenuItems.newEventSequenceItem(that, record);
+          } else if (record.groupType === 'group') {
+            items.newGroupItem = CellMenuItems.newGroupItem(that, record);
+            items.newEventSequenceItem = CellMenuItems.newEventSequenceItem(that, record);
+          } else if (record.groupType === 'event-sequence') {
+            items.newTrackItem = CellMenuItems.newTrackItem(that, record);
+          }
+        }
+      }
+    };
   }
 
 }
