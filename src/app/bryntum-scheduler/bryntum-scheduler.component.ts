@@ -12,10 +12,10 @@ import {VcEvent} from "./model/vc-event";
 export class BryntumSchedulerComponent implements AfterViewInit {
 
   @ViewChild(BryntumSchedulerProComponent) schedulerProComponent: BryntumSchedulerProComponent | undefined;
-  scheduler: SchedulerPro|undefined;
+  scheduler: SchedulerPro | undefined;
   public startDate: Date = new Date(2022, 1, 1, 0, 0, 0, 0);
   // public startDate: Date = new Date(0);
-  public endDate: Date = new Date (this.startDate.getTime() + 4 * 24 * 60 * 60 * 1000);
+  public endDate: Date = new Date(this.startDate.getTime() + 4 * 24 * 60 * 60 * 1000);
 
   id: number = 0;
 
@@ -23,7 +23,23 @@ export class BryntumSchedulerComponent implements AfterViewInit {
     eventModelClass: VcEvent
   });
 
-  constructor() { }
+  features: any = {
+    tree: true,
+    cellMenu: {
+      items: {
+        resourceItem:
+          {
+            text: 'Add new resource',
+            icon: 'b-fa b-fa-plus',
+            weight: 200,
+            onItem: () => {
+              console.log("new resource");
+              this.addResource(undefined);
+            }
+          }
+      }
+    }
+  };
 
   ngAfterViewInit(): void {
     // store Bryntum Scheduler Pro instance
@@ -33,13 +49,15 @@ export class BryntumSchedulerComponent implements AfterViewInit {
   addResource(parent: number|undefined) {
     const id = this.id++;
 
-    if(parent === undefined) {
+    if (parent === undefined) {
       this.scheduler?.resourceStore.add({
         id: id,
         name: 'Resource ' + id,
         children: [
-          {id: id + 100,
-          name: 'Child Resource ' + (id + 100)}
+          {
+            id: id + 100,
+            name: 'Child Resource ' + (id + 100)
+          }
         ]
       });
     } else {
