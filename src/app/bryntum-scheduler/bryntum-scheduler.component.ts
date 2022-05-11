@@ -20,7 +20,7 @@ export class BryntumSchedulerComponent implements AfterViewInit {
   id: number = 0;
 
   project: ProjectModel = new ProjectModel({
-
+    eventModelClass: VcEvent
   });
 
   constructor() { }
