@@ -1,6 +1,7 @@
-<div>
-  <span (click)="addResource()">Add Resource</span>
-  <span (click)="addEvent()">Add Event</span>
+<div class="menu">
+  <span (click)="addApplication()">Add Application</span>
+  <span (click)="addEventTrack(0)">Add Track</span>
+  <span (click)="addEvent(0)">Add Application Event</span>
 </div>
 
 <bryntum-scheduler-pro
@@ -10,6 +11,7 @@
   [project]="project"
   [treeFeature]="true"
   [cellMenuFeature]="cellMenuFeature"
+  [eventRenderer]="eventRenderer"
 
   [viewPreset] = "'secondAndMinute'"
   (onPresetChange)="preventScrollOutside($event)"

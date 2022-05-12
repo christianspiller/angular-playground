@@ -1,0 +1,7 @@
+.menu span{
+  margin-left: 10px;
+}
+
+.menu span:hover {
+  background: yellow;
+}

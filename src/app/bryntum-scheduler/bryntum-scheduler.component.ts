@@ -4,6 +4,7 @@ import {ProjectModel, SchedulerPro} from "@bryntum/schedulerpro/schedulerpro.lit
 import {VcEvent} from "./model/vc-event";
 import {VcResource} from "./model/vc-resource";
 import {CellMenuItems} from "./util/cell-menu-items";
+import {SvgLines} from "./util/svg-lines";
 
 @Component({
   selector: 'app-bryntum-scheduler',
@@ -30,10 +31,9 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // store Bryntum Scheduler Pro instance
     this.scheduler = this.schedulerProComponent?.instance;
-
   }
 
-  addResource() {
+  addApplication() {
     const id = this.id++;
 
     this.scheduler?.resourceStore.add({
@@ -51,10 +51,11 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
   }
 
   addEventTrack(parentId: number) {
-    this.insertChild(parentId, 'track', 'Track ');
+    const id = this.insertChild(parentId, 'track', 'Track ');
+    this.addEvent(id);
   }
 
-  insertChild(parentId: number, type: string, nameTemplate: string) {
+  insertChild(parentId: number, type: string, nameTemplate: string): number {
     const id = this.id++;
     const parent = this.scheduler?.resourceStore.getById(parentId) as VcResource;
     parent?.appendChild({
@@ -62,25 +63,28 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
       name: nameTemplate + id,
       groupType: type
     });
-    // this.scheduler?.resourceStore.toggleCollapse(parent?.id, parent?.expanded === false);
+    // this.scheduler?.resourceStore.toggleCollapse(parent?.id, parent?.expanded === false); :-(
+    return id;
   }
 
-  addEvent() {
+  addEvent(resourceId: number) {
     const id = this.id++;
     this.scheduler?.eventStore.add({
       id: id,
       name: 'Event ' + id,
       startDate: this.startDate,
-      duration: 8,
+      duration: 50,
       durationUnit: 'second'
     });
 
-    this.scheduler?.assignmentStore.add({
-      event: id,
-      resource: 0
-    });
-
-    console.log(this.scheduler?.events);
+    // for(let resource of this.scheduler?.resources as any[]) {
+    //   if (resource.groupType === groupType) {
+        this.scheduler?.assignmentStore.add({
+          event: id,
+          resource: resourceId
+        });
+    //   }
+    // }
   }
 
   preventScrollOutside($event: any) {
@@ -107,29 +111,49 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
   }
 
   startTime: Date = new Date();
+  eventRenderer: any = function eventRenderer({ eventRecord, resourceRecord, renderData }: any) {
+    // renderData.style = 'color:white';                 // You can use inline styles too.
+    //
+    // // Property names with truthy values are added to the resulting elements CSS class.
+    // renderData.cls.isImportant = this.isImportant(eventRecord);
+    // renderData.cls.isModified = eventRecord.isModified;
+    //
+    // // Remove a class name by setting the property to false
+    // renderData.cls[scheduler.generatedIdCls] = false;
+    //
+    // // Or, you can treat it as a string, but this is less efficient, especially
+    // // if your renderer wants to *remove* classes that may be there.
+    // renderData.cls += ' extra-class';
+    if(resourceRecord.groupType === 'application') {
+      console.log(renderData);
+      return `<span>${eventRecord.name}</span><svg xmlns="http://www.w3.org/2000/svg" width="${renderData.width}" height="30" viewBox="0 0 ${renderData.width} 30">` +
+        `<path d="M173.2 140L0 150L86.6 0z" fill="#ff0080"/>` +
+        '</svg>'
+    } else if(resourceRecord.groupType === 'track') {
+      console.log(renderData);
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="${renderData.width}" height="30" viewBox="0 0 ${renderData.width} 30">` +
+        SvgLines.getPing() +
+        '</svg>'
+    }
+
+    return null;
+  };
+
   onEventDrag($event: any, type: string) {
     if(type === 'event saved') {
       const event = $event.eventRecord.originalData as VcEvent;
-      console.log(event);
-      console.log(this.scheduler?.eventStore.getById(event.id));
+      console.log(type, event);
     } else if (type==='before save'){
       $event.eventRecord.originalData.id = this.id++;
-      console.log(type, $event);
     } else if (type==='resize end'){
-      console.log(type,$event);
     } else if (type==='drag start'){
       console.log(type, $event);
       this.startTime = $event.eventRecords[0].startDate;
-      console.log(this.startTime);
     } else if(type==='drag stop'){
       let stopTime = $event.eventRecords[0].startDate;
       let diff = stopTime.getTime() - this.startTime.getTime();
-      // console.log($event.resourceRecord.children);
 
       for (let child of $event.resourceRecord.children || []) {
-        console.log('child',child);
-        console.log('resource',this.scheduler?.resourceStore.getById(child.originalData.id));
-        console.log('assignment',this.scheduler?.assignmentStore.getEventsForResource(child.originalData.id));
         let eventsForResource = this.scheduler?.assignmentStore.getEventsForResource(child.originalData.id) || [];
 
         for(let event of eventsForResource) {
