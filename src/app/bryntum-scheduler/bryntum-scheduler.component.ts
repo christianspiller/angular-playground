@@ -25,7 +25,7 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
     resourceModelClass: VcResource
   });
 
-  features: any = {};
+  cellMenuFeature: any = {};
 
   ngAfterViewInit(): void {
     // store Bryntum Scheduler Pro instance
@@ -91,19 +91,16 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const that = this;
 
-    this.features = {
-      tree: true,
-      cellMenu: {
-        processItems({items, record}: any) {
-          if (record.groupType === 'application') {
-            items.newGroupItem = CellMenuItems.newGroupItem(that, record);
-            items.newEventSequenceItem = CellMenuItems.newEventSequenceItem(that, record);
-          } else if (record.groupType === 'group') {
-            items.newGroupItem = CellMenuItems.newGroupItem(that, record);
-            items.newEventSequenceItem = CellMenuItems.newEventSequenceItem(that, record);
-          } else if (record.groupType === 'event-sequence') {
-            items.newTrackItem = CellMenuItems.newTrackItem(that, record);
-          }
+    this.cellMenuFeature = {
+      processItems({items, record}: any) {
+        if (record.groupType === 'application') {
+          items.newGroupItem = CellMenuItems.newGroupItem(that, record);
+          items.newEventSequenceItem = CellMenuItems.newEventSequenceItem(that, record);
+        } else if (record.groupType === 'group') {
+          items.newGroupItem = CellMenuItems.newGroupItem(that, record);
+          items.newEventSequenceItem = CellMenuItems.newEventSequenceItem(that, record);
+        } else if (record.groupType === 'event-sequence') {
+          items.newTrackItem = CellMenuItems.newTrackItem(that, record);
         }
       }
     };
