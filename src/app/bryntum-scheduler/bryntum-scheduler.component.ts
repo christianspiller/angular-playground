@@ -30,6 +30,7 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // store Bryntum Scheduler Pro instance
     this.scheduler = this.schedulerProComponent?.instance;
+
   }
 
   addResource() {
@@ -61,7 +62,7 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
       name: nameTemplate + id,
       groupType: type
     });
-    this.scheduler?.resourceStore.toggleCollapse(parent?.id, parent?.expanded === false);
+    // this.scheduler?.resourceStore.toggleCollapse(parent?.id, parent?.expanded === false);
   }
 
   addEvent() {
@@ -108,4 +109,37 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
     };
   }
 
+  startTime: Date = new Date();
+  onEventDrag($event: any, type: string) {
+    if(type === 'event saved') {
+      const event = $event.eventRecord.originalData as VcEvent;
+      console.log(event);
+      console.log(this.scheduler?.eventStore.getById(event.id));
+    } else if (type==='before save'){
+      $event.eventRecord.originalData.id = this.id++;
+      console.log(type, $event);
+    } else if (type==='resize end'){
+      console.log(type,$event);
+    } else if (type==='drag start'){
+      console.log(type, $event);
+      this.startTime = $event.eventRecords[0].startDate;
+      console.log(this.startTime);
+    } else if(type==='drag stop'){
+      let stopTime = $event.eventRecords[0].startDate;
+      let diff = stopTime.getTime() - this.startTime.getTime();
+      // console.log($event.resourceRecord.children);
+
+      for (let child of $event.resourceRecord.children || []) {
+        console.log('child',child);
+        console.log('resource',this.scheduler?.resourceStore.getById(child.originalData.id));
+        console.log('assignment',this.scheduler?.assignmentStore.getEventsForResource(child.originalData.id));
+        let eventsForResource = this.scheduler?.assignmentStore.getEventsForResource(child.originalData.id) || [];
+
+        for(let event of eventsForResource) {
+          event.startDate = new Date((event.startDate as Date).getTime() + diff);
+        }
+      }
+    }
+
+  }
 }
