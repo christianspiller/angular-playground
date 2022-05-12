@@ -143,8 +143,8 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
     {field: 'device', text: 'Device', renderer: ({value, record}:any) => {
       return record.groupType === 'event-sequence'? value : '-';
     }},
-    {field: 'system', text: 'System', renderer: ({value, record}:any) => {
-        return record.groupType === 'event-sequence'? value : '-';
+    {field: 'system', htmlEncode: false, text: 'System', renderer: ({value, record}:any) => {
+        return record.groupType === 'event-sequence' ? ('<img alt="ping" height="30" src="https://venturebeat.com/wp-content/uploads/2014/12/Heartbeat-III.png?fit=750%2C728&strip=all">'+ value) : '-';
       }}
   ];
 
