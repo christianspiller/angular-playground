@@ -138,6 +138,15 @@ export class BryntumSchedulerComponent implements OnInit, AfterViewInit {
 
     return null;
   };
+  columns: any[] = [
+    {field: 'name', text: 'Name', type: 'tree'},
+    {field: 'device', text: 'Device', renderer: ({value, record}:any) => {
+      return record.groupType === 'event-sequence'? value : '-';
+    }},
+    {field: 'system', text: 'System', renderer: ({value, record}:any) => {
+        return record.groupType === 'event-sequence'? value : '-';
+      }}
+  ];
 
   onEventDrag($event: any, type: string) {
     if(type === 'event saved') {
