@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./grid-view/grid-view.module').then(m => m.GridViewModule) },
   { path: 'dhtmlx',
     loadChildren: () => import('./dhtmlx/dhtmlx.module').then(m => m.DhtmlxModule) },
-  { path: 'bryntum', loadChildren: () => import('./bryntum/bryntum.module').then(m => m.BryntumModule) },
-  { path: 'bryntum-scheduler', loadChildren: () => import('./bryntum-scheduler/bryntum-scheduler.module').then(m => m.BryntumSchedulerModule) }];
+  // { path: 'bryntum', loadChildren: () => import('./bryntum/bryntum.module').then(m => m.BryntumModule) }
+  ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
